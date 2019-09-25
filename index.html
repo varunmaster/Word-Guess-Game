@@ -28,11 +28,12 @@
         var guessArr = [];
         var wins = 0;
         var loss = 0;
+        var compChoice = chooseLetter();
 
         document.onkeyup = function (e) {
             var usrPress = e.key;
             console.log("usr key", usrPress)
-            var compChoice = alpha[Math.floor(Math.random() * alpha.length)];
+            // var compChoice = alpha[Math.floor(Math.random() * alpha.length)];
             console.log("comp choice", compChoice);
 
             if (e.key === compChoice) {
@@ -49,6 +50,7 @@
                 loss++;
                 lossText.textContent = loss;
                 resetGame();
+                chooseLetter();
             }
 
             winText.textContent = wins;
@@ -57,8 +59,14 @@
         }
 
         function resetGame() {
-            guessText.textContent = 0;
+            guessText.textContent = null;
             triesLeftText.textContent = 9;
+
+        }
+
+        function chooseLetter(){
+            var compChoice = alpha[Math.floor(Math.random() * alpha.length)];
+            return compChoice;
         }
     </script>
 </body>
