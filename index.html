@@ -41,7 +41,7 @@
                 wins++;
                 winText.textContent = wins;
                 resetGame();
-                chooseLetter();
+                // chooseLetter();
             } 
             guessLeft--;
             guessArr.push(e.key);
@@ -51,7 +51,7 @@
             if (guessLeft <= 1) {
                 loss++;
                 resetGame();
-                chooseLetter();
+                // chooseLetter();
                 console.log("game lost...resetting")
             }
 
@@ -64,7 +64,7 @@
             guessArr = [];
             guessLeft = 9;
             triesLeftText.textContent = 9;
-
+            chooseLetter();
         }
 
         function chooseLetter(){
