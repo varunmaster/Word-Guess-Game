@@ -33,31 +33,30 @@
         document.onkeyup = function (e) {
             var usrPress = e.key;
             console.log("usr key", usrPress)
-            // var compChoice = alpha[Math.floor(Math.random() * alpha.length)];
             console.log("comp choice", compChoice);
 
             if (e.key === compChoice) {
                 guessLeft--;
                 wins++;
-                winText.textContent = wins;
+                // winText.textContent = wins;
                 resetGame();
-                // chooseLetter();
             } 
             guessLeft--;
             guessArr.push(e.key);
-            triesLeftText.textContent = guessLeft;
+            
             console.log("guess left: ",guessLeft);
 
             if (guessLeft < 1) {
                 loss++;
                 resetGame();
-                // chooseLetter();
+                // var compChoice = chooseLetter();
                 console.log("game lost...resetting")
             }
-            
+            // updating what the user sees
             winText.textContent = wins;
             lossText.textContent = loss;
             guessText.textContent = guessArr;
+            triesLeftText.textContent = guessLeft;
         }
 
         function resetGame() {
