@@ -37,20 +37,22 @@
             console.log("comp choice", compChoice);
 
             if (e.key === compChoice) {
+                guessLeft--;
                 wins++;
                 winText.textContent = wins;
                 resetGame();
+                chooseLetter();
             } 
             guessLeft--;
             guessArr.push(e.key);
             triesLeftText.textContent = guessLeft;
 
-
-            if (guessLeft < 1) {
+            console.log("guess left: ",guessLeft);
+            if (guessLeft <= 1) {
                 loss++;
-                lossText.textContent = loss;
                 resetGame();
                 chooseLetter();
+                console.log("game lost...resetting")
             }
 
             winText.textContent = wins;
@@ -59,7 +61,8 @@
         }
 
         function resetGame() {
-            guessText.textContent = null;
+            guessArr = [];
+            guessLeft = 9;
             triesLeftText.textContent = 9;
 
         }
