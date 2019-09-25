@@ -1,5 +1,5 @@
 var alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var guessLeft = 10;
+var guessLeft = 9;
 var guessText = document.getElementById("guesses");
 var winText = document.getElementById("wins");
 var lossText = document.getElementById("losses");
@@ -11,8 +11,8 @@ var compChoice = chooseLetter();
 
 document.onkeyup = function (e) {
     var usrPress = e.key;
-    console.log("usr key", usrPress)
-    console.log("comp choice", compChoice);
+    // console.log("usr key", usrPress)
+    // console.log("comp choice", compChoice);
 
     if (e.key === compChoice) {
         // guessLeft--;
@@ -20,14 +20,16 @@ document.onkeyup = function (e) {
         resetGame();
     }
     guessArr.push(e.key);
-    console.log("guess left: ", guessLeft);
+    guessLeft--;
+    // console.log("guess left1: ", guessLeft);
 
     if (guessLeft < 1) {
         loss++;
         resetGame();
-        console.log("game lost...resetting")
+        // console.log("game lost...resetting")
     }
-    guessLeft--;
+    
+    // console.log("guess left2: ", guessLeft);
     // updating what the user sees
     winText.textContent = wins;
     lossText.textContent = loss;
@@ -37,13 +39,12 @@ document.onkeyup = function (e) {
 
 function resetGame() {
     guessArr = [];
-    guessLeft = 10;
-    triesLeftText.textContent = 9;
+    guessLeft = 9;
+    triesLeftText.textContent = guessLeft;
     chooseLetter();
 }
 
 function chooseLetter() {
-    compChoice = null;
     compChoice = alpha[Math.floor(Math.random() * alpha.length)];
     return compChoice;
 }
