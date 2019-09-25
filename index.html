@@ -36,7 +36,7 @@
             console.log("comp choice", compChoice);
 
             if (e.key === compChoice) {
-                guessLeft--;
+                // guessLeft--;
                 wins++;
                 // winText.textContent = wins;
                 resetGame();
@@ -67,7 +67,8 @@
         }
 
         function chooseLetter(){
-            var compChoice = alpha[Math.floor(Math.random() * alpha.length)];
+            compChoice = null;
+            compChoice = alpha[Math.floor(Math.random() * alpha.length)];
             return compChoice;
         }
     </script>
