@@ -7,6 +7,7 @@ var wordList = ["giants", "eagles", "vikings", "panthers", "falcons", "bears", "
 var chosenWord = chooseWord();
 var chosenWordArr = wordToArr(chosenWord);
 var chosenWordBlank = [];
+convertWordToDash(chosenWord);
 var guessArr = [];
 var wins = 0;
 var loss = 0;
@@ -52,7 +53,7 @@ function chooseWord() {
 
 function convertWordToDash(word){
     for(var i = 0; i < word.length; i++){
-        chosenWordBlank[i] = _;
+        chosenWordBlank[i] = "_";
     }
     return chosenWordBlank;
 }
