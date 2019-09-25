@@ -17,75 +17,33 @@
     <p>Your guesses so far: <span id="guesses"></span></p>
 
     <script type="text/javascript">
-        var compOptions = ['r', 'p', 's'];
-
-
-        var usrPress = document.getElementById("user-choice");
-        var hWins = document.getElementById("wins");
-        var hLoss = document.getElementById("losses");
-        var hTies = document.getElementById("ties");
-        var compPress = document.getElementById("computer-choice");
-        var wins = 0;
-        var loss = 0;
-        var tie = 0;
-
+    var alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    var guessLeft = 9;
+    var guessText = document.getElementById("guesses");
+    var winText = document.getElementById("wins");
+    var lossText = document.getElementById("losses");
+    // var usrPress = document.getElementById("guesses");
+    var wins = 0;
+    var loss = 0;
 
         document.onkeyup = function (e) {
-            var compChoice = compOptions[Math.floor(Math.random() * compOptions.length)];
-            // console.log('compChoice:', compChoice);
-            usrPress.textContent = e.key;
-            compPress.textContent = compChoice;
-            // console.log('e.key:', e.key);
-            // console.log('compChoice:', compChoice);
-            // console.log('usrPress: ', usrPress);
+            var usrPress = e.key;
+            var compChoice = alpha[Math.floor(Math.random() * alpha.length)];
+            while(guessLeft < 1){
+                if(usrPress === compChoice){
+                    wins++;
+                    winText.textContent = wins;
+                    break;
+                }else{
+                    continue;
+                }
+                guessLeft--;
+                guessText.textContent = guessLeft;
+            }
 
-            if ((e.key === 'r') || (e.key === 'p') || (e.key === 's')) {
-                if ((e.key === 'r') && (compChoice === 'r')) {
-                    tie++;
-                    // console.log('tie: ' + tie);
-                    hTies.textContent = tie;
-
-                }
-                else if ((e.key === 'r') && (compChoice === 'p')) {
-                    wins++;
-                    // console.log('wins: ' + wins);
-                    hWins.textContent = wins;
-                }
-                else if ((e.key === 'r') && (compChoice === 's')) {
-                    loss++;
-                    // console.log('loss: ' + loss);
-                    hLoss.textContent = loss;
-                }
-                else if ((e.key === 'p') && (compChoice === 's')) {
-                    loss++;
-                    hLoss.textContent = loss;
-                }
-                else if ((e.key === 'p') && (compChoice === 'r')) {
-                    wins++;
-                    // console.log('wins: ' + wins);
-                    hWins.textContent = wins;
-                }
-                else if ((e.key === 'p') && (compChoice === 'p')) {
-                    tie++;
-                    // console.log('tie: ' + tie);
-                    hTies.textContent = tie;
-                }
-                else if ((e.key === 's') && (compChoice === 's')) {
-                    tie++;
-                    // console.log('tie: ' + tie);
-                    hTies.textContent = tie;
-                }
-                else if ((e.key === 's') && (compChoice === 'r')) {
-                    loss++;
-                    hLoss.textContent = loss;
-                }
-                else if ((e.key === 's') && (compChoice === 'p')) {
-                    wins++;
-                    // console.log('wins: ' + wins);
-                    hWins.textContent = wins;
-                }
-            }else {
-                alert ("YOU DIDN'T PRESS R, P, or S. PLAY THE GAME RIGHT.");
+            if(guessLeft < 1){
+                loss++;
+                lossText.textContent = loss;
             }
         }
     </script>
