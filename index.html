@@ -46,15 +46,15 @@
             guessLeft--;
             guessArr.push(e.key);
             triesLeftText.textContent = guessLeft;
-
             console.log("guess left: ",guessLeft);
+
             if (guessLeft < 1) {
                 loss++;
                 resetGame();
                 // chooseLetter();
                 console.log("game lost...resetting")
             }
-
+            
             winText.textContent = wins;
             lossText.textContent = loss;
             guessText.textContent = guessArr;
