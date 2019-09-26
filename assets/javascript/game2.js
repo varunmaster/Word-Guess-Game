@@ -50,7 +50,7 @@ function newGame() {
     chosenWordArr = wordToArr(chosenWord);
     chosenWordBlank = convertWordToDash(chosenWord);
     triesLeft = 12;
-    chosenWordBlank = [];
+    guessArr = [];
     updateScreen();
 }
 
