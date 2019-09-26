@@ -25,10 +25,10 @@ document.onkeyup = function (e) {
     if (guessArr.indexOf(usrPress) === -1) { //if the guess is not already guessed before, continue with game
         if (findAllIndecies(chosenWordArr, usrPress)){
         // if (chosenWordArr.indexOf(usrPress) !== -1) {
-            // console.log("guess is right");
-            // console.log("index of blank word: ", chosenWordArr.indexOf(usrPress));
+            console.log("guess is right");
+            console.log("index of blank word: ", chosenWordArr.indexOf(usrPress));
             // chosenWordBlank[chosenWordArr.indexOf(usrPress)] = usrPress;
-            // console.log("updated blank arr to: ", chosenWordBlank[chosenWordArr.indexOf(usrPress)]);
+            console.log("updated blank arr to: ", chosenWordBlank[chosenWordArr.indexOf(usrPress)]);
             triesLeft--;
             // console.log("guess left: ", triesLeft);
             guessArr.push(usrPress);

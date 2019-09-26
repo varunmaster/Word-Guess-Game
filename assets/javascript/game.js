@@ -11,8 +11,8 @@ var compChoice = chooseLetter();
 
 document.onkeyup = function (e) {
     var usrPress = e.key;
-    // console.log("usr key", usrPress)
-    // console.log("comp choice", compChoice);
+    console.log("usr key", usrPress)
+    console.log("comp choice", compChoice);
 
     if (e.key === compChoice) {
         // guessLeft--;
@@ -21,7 +21,7 @@ document.onkeyup = function (e) {
     }
     guessArr.push(e.key);
     guessLeft--;
-    // console.log("guess left1: ", guessLeft);
+    console.log("guess left1: ", guessLeft);
 
     if (guessLeft < 1) {
         loss++;
@@ -29,7 +29,7 @@ document.onkeyup = function (e) {
         // console.log("game lost...resetting")
     }
     
-    // console.log("guess left2: ", guessLeft);
+    console.log("guess left2: ", guessLeft);
     // updating what the user sees
     winText.textContent = wins;
     lossText.textContent = loss;
