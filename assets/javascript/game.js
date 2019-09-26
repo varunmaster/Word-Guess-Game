@@ -19,17 +19,17 @@ document.onkeyup = function (e) {
         wins++;
         resetGame();
     }
-    guessArr.push(e.key);
-    guessLeft--;
-    console.log("guess left1: ", guessLeft);
-
-    if (guessLeft < 1) {
-        loss++;
-        resetGame();
-        // console.log("game lost...resetting")
+    else {
+        guessArr.push(e.key);
+        guessLeft--;
+        console.log("guess left1: ", guessLeft);
+        if (guessLeft < 1) {
+            loss++;
+            resetGame();
+            // console.log("game lost...resetting")
+        }
+        console.log("guess left2: ", guessLeft);
     }
-    
-    console.log("guess left2: ", guessLeft);
     // updating what the user sees
     winText.textContent = wins;
     lossText.textContent = loss;
