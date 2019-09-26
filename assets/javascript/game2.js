@@ -3,7 +3,7 @@ var winText = document.getElementById("wins");
 var lossText = document.getElementById("losses");
 var triesLeftText = document.getElementById("triesLeft");
 var guessText = document.getElementById("guesses");
-var wordList = ["giants", "eagles", "vikings", "panthers", "falcons", "bears", "rams", "chargers", "patriots", "cowboys", "packers", "chiefs", "saints"];
+var wordList = ["giants", "texans", "ravens", "panthers", "falcons", "bears", "rams", "browns", "packers", "chiefs", "lions"];
 var chosenWord = chooseWord();
 var chosenWordArr = wordToArr(chosenWord);
 var chosenWordBlank = [];
@@ -11,39 +11,47 @@ convertWordToDash(chosenWord);
 var guessArr = [];
 var wins = 0;
 var loss = 0;
-var guessLeft = 12;
-
-console.log("chosen word: ", chosenWord);
-console.log("chosen word arr:", chosenWordArr);
-console.log("chosen word blank: ",chosenWordBlank);
+var triesLeft = 12;
 
 document.onkeyup = function (e) {
+    console.log("chosen word: ", chosenWord);
+    console.log("chosen word arr:", chosenWordArr);
+    console.log("chosen word blank: ", chosenWordBlank);
     var usrPress = e.key;
     console.log("user press: ", usrPress);
     if (chosenWordArr.indexOf(usrPress) !== -1) {
         console.log("guess is right");
         console.log("index of blank word: ", chosenWordArr.indexOf(usrPress));
         chosenWordBlank[chosenWordArr.indexOf(usrPress)] = usrPress;
-        console.log("updated blank arr to: ",chosenWordBlank[chosenWordArr.indexOf(usrPress)]);
-        guessLeft--;
-        console.log("guess left: ", guessLeft);
+        console.log("updated blank arr to: ", chosenWordBlank[chosenWordArr.indexOf(usrPress)]);
+        triesLeft--;
+        console.log("guess left: ", triesLeft);
+        guessArr.push(usrPress);
         updateScreen();
-    }else {
-        guessLeft--;
+    } else {
+        triesLeft--;
         guessArr.push(usrPress);
         updateScreen();
     }
 
-    if(isWordComplete){
+    if (isWordComplete(chosenWordBlank)) {
         wins++;
+        newGame();
+    }
+
+    if(triesLeft <= 0) {
+        loss++;
         newGame();
     }
 }
 
 function newGame() {
-    chooseWord();
-    convertWordToDash();
-    guessLeft = 12;
+    chosenWord = chooseWord();
+    chosenWordArr = wordToArr(chosenWord);
+    chosenWordBlank = convertWordToDash(chosenWord);
+    triesLeft = 12;
+    chosenWordBlank = [];
+    updateScreen();
 }
 
 function chooseWord() {
@@ -51,8 +59,8 @@ function chooseWord() {
     return chosenWord;
 }
 
-function convertWordToDash(word){
-    for(var i = 0; i < word.length; i++){
+function convertWordToDash(word) {
+    for (var i = 0; i < word.length; i++) {
         chosenWordBlank[i] = "_";
     }
     return chosenWordBlank;
@@ -64,20 +72,22 @@ function wordToArr(word) {
 }
 
 function isWordComplete(arr) {
-    if(arr.indexOf("_") !== -1) {
+    if (arr.indexOf("_") !== -1) {
         return false;
-    }else {
+    } else {
         return true;
     }
 }
 
 function updateScreen() {
     winText.textContent = wins;
-    console.log("updating winText to: ",wins);
+    console.log("updating winText to: ", wins);
     lossText.textContent = loss;
-    console.log("updating lossTest to: ",loss);
-    guessText.textContent = guessLeft;
-    console.log("updating guessText to: ",guessLeft);
+    console.log("updating lossTest to: ", loss);
+    triesLeftText.textContent = triesLeft;
+    console.log("updating guessText to: ", triesLeft);
     wordText.textContent = chosenWordBlank;
-    console.log("updating wordText to: ",chosenWordBlank);
+    console.log("updating wordText to: ", chosenWordBlank);
+    guessText.textContent = guessArr;
+    console.log("guessed letters so far: ", guessArr);
 }
